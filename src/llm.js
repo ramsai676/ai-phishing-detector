@@ -1,33 +1,33 @@
-// Optional LLM enrichment layer.
+// Optional explanation layer.
 //
 // The heuristic analyzer already produces a verdict and a list of fired signals.
-// This layer asks Claude to turn that structured evidence into a short, friendly
-// explanation a non-technical person can act on. If no ANTHROPIC_API_KEY is set
-// (or the call fails), we fall back to a deterministic explanation built from the
-// signals — so the product always returns something useful.
+// This layer turns that structured evidence into a short, friendly explanation a
+// non-technical person can act on, using the Gemini API. If no GEMINI_API_KEY is
+// set (or the call fails), we fall back to a deterministic explanation built from
+// the signals, so the product always returns something useful.
 
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenAI } from '@google/genai';
 
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 let client = null;
 function getClient() {
   if (client) return client;
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return null;
-  client = new Anthropic({ apiKey });
+  client = new GoogleGenAI({ apiKey });
   return client;
 }
 
 export function llmAvailable() {
-  return Boolean(process.env.ANTHROPIC_API_KEY);
+  return Boolean(process.env.GEMINI_API_KEY);
 }
 
 function fallbackExplanation(report) {
   if (!report.signals.length) {
-    return "I couldn't find the usual phishing tells (urgent threats, credential requests, suspicious links, or payment demands). That's a good sign, but it isn't a guarantee — if anything feels off, verify with the sender through a channel you trust.";
+    return "I couldn't find the usual phishing tells (urgent threats, credential requests, suspicious links, or payment demands). That's a good sign, but it isn't a guarantee. If anything feels off, verify with the sender through a channel you trust.";
   }
-  const lines = report.signals.slice(0, 4).map((s) => `• ${s.label} — ${s.explanation}`);
+  const lines = report.signals.slice(0, 4).map((s) => `- ${s.label}: ${s.explanation}`);
   const advice =
     report.verdict.level === 'safe'
       ? 'Stay alert, but nothing here strongly indicates a scam.'
@@ -47,7 +47,7 @@ Write a SHORT explanation (max ~120 words) for a non-technical reader:
 Rules:
 - Never tell the user to click a link or share credentials.
 - Do not invent signals that weren't detected. Ground your explanation in the provided evidence.
-- No markdown headers, no preamble like "Sure" — just the explanation.
+- No markdown headers, no preamble like "Sure", just the explanation.
 - Be reassuring when the message is genuinely benign; don't manufacture fear.`;
 
 /**
@@ -77,20 +77,15 @@ ${evidence}
 Write the explanation now.`;
 
   try {
-    const resp = await c.messages.create({
+    const resp = await c.models.generateContent({
       model: MODEL,
-      max_tokens: 400,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: userPrompt }],
+      contents: userPrompt,
+      config: { systemInstruction: SYSTEM_PROMPT, maxOutputTokens: 400 },
     });
-    const text = resp.content
-      .filter((b) => b.type === 'text')
-      .map((b) => b.text)
-      .join('')
-      .trim();
+    const text = (resp.text || '').trim();
     return { text: text || fallbackExplanation(report), source: 'llm', model: MODEL };
   } catch (err) {
-    // Network error, bad key, rate limit — degrade gracefully.
+    // Network error, bad key, rate limit: degrade gracefully.
     return { text: fallbackExplanation(report), source: 'fallback', error: err.message };
   }
 }

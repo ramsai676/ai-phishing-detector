@@ -262,29 +262,29 @@ const SIGNALS = [
         const host = hostnameOf(url);
         if (!host) continue;
         if (IP_HOST_REGEX.test(url)) {
-          findings.push(`${host} — raw IP address instead of a domain`);
+          findings.push(`${host} - raw IP address instead of a domain`);
           strength = Math.max(strength, 0.9);
         }
         if (URL_SHORTENERS.has(host)) {
-          findings.push(`${host} — shortened link hides the true destination`);
+          findings.push(`${host} - shortened link hides the true destination`);
           strength = Math.max(strength, 0.7);
         }
         if (/xn--/.test(host)) {
-          findings.push(`${host} — punycode domain (possible homograph attack)`);
+          findings.push(`${host} - punycode domain (possible homograph attack)`);
           strength = Math.max(strength, 0.85);
         }
         const tld = host.split('.').pop();
         if (SUSPICIOUS_TLDS.has(tld)) {
-          findings.push(`${host} — uncommon/abused top-level domain (.${tld})`);
+          findings.push(`${host} - uncommon/abused top-level domain (.${tld})`);
           strength = Math.max(strength, 0.6);
         }
         if (host.split('.').length >= 5) {
-          findings.push(`${host} — excessive sub-domains used to look legitimate`);
+          findings.push(`${host} - excessive sub-domains used to look legitimate`);
           strength = Math.max(strength, 0.6);
         }
         const imp = looksLikeBrandImpersonation(host);
         if (imp) {
-          findings.push(`${host} — ${imp.reason}`);
+          findings.push(`${host} - ${imp.reason}`);
           strength = Math.max(strength, 0.95);
         }
       }
@@ -308,7 +308,7 @@ const SIGNALS = [
       return {
         strength: 0.6,
         evidence: m[0].trim(),
-        detail: 'Unexpected attachments — especially .zip/.exe/.html — are a common malware delivery method.',
+        detail: 'Unexpected attachments - especially .zip/.exe/.html - are a common malware delivery method.',
       };
     },
   },
@@ -334,7 +334,7 @@ const VERDICTS = [
   { min: 0, max: 24, level: 'safe', label: 'Likely Safe', emoji: '✅' },
   { min: 25, max: 49, level: 'suspicious', label: 'Suspicious', emoji: '⚠️' },
   { min: 50, max: 74, level: 'likely_phishing', label: 'Likely Phishing', emoji: '🚩' },
-  { min: 75, max: 100, level: 'dangerous', label: 'Dangerous — Very Likely a Scam', emoji: '🛑' },
+  { min: 75, max: 100, level: 'dangerous', label: 'Dangerous - Very Likely a Scam', emoji: '🛑' },
 ];
 
 function verdictFor(score) {
@@ -410,7 +410,7 @@ function weightOf(id) {
 
 function buildSummary(verdict, fired) {
   if (!fired.length) {
-    return 'No common phishing or scam signals were detected. Stay alert anyway — context matters.';
+    return 'No common phishing or scam signals were detected. Stay alert anyway - context matters.';
   }
   const top = fired.slice(0, 3).map((f) => f.label.toLowerCase());
   return `${verdict.label}. Detected ${fired.length} risk signal${fired.length > 1 ? 's' : ''}, most notably: ${top.join('; ')}.`;

@@ -50,7 +50,7 @@ app.post('/api/analyze', async (req, res) => {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   app.listen(PORT, () => {
     console.log(`\n  🛡️  AI Phishing & Scam Detector running on http://localhost:${PORT}`);
-    console.log(`      LLM explanations: ${llmAvailable() ? 'ENABLED (Claude)' : 'fallback mode (set ANTHROPIC_API_KEY to enable)'}\n`);
+    console.log(`      LLM explanations: ${llmAvailable() ? 'ENABLED (Gemini)' : 'fallback mode (set GEMINI_API_KEY to enable)'}\n`);
   });
 }
 

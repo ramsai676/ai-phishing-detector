@@ -44,7 +44,7 @@ npm start
 # open http://localhost:3000
 ```
 
-The tool works with no configuration. To enable the written explanations, copy `.env.example` to `.env` and add an `ANTHROPIC_API_KEY`.
+The tool works with no configuration. To enable the written explanations, copy `.env.example` to `.env` and add a `GEMINI_API_KEY`.
 
 Run the tests:
 
@@ -103,7 +103,7 @@ The detection rules live in `src/analyzer.js` and are fully inspectable. The exp
 - Node.js and Express (ES modules)
 - Vanilla HTML, CSS, and JavaScript front end with an animated risk gauge
 - Built-in `node:test` for unit tests
-- Optional Anthropic API integration for written explanations, with a deterministic fallback
+- Optional Gemini API integration for written explanations, with a deterministic fallback
 
 ## Scope
 

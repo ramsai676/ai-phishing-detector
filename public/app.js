@@ -45,8 +45,8 @@ async function checkMode() {
     const data = await r.json();
     els.modeHint.textContent =
       data.llm === 'enabled'
-        ? '✨ AI explanations enabled (Claude). Your message is analysed locally first, then explained.'
-        : 'Running in offline heuristic mode. Add an ANTHROPIC_API_KEY to enable AI-written explanations.';
+        ? '✨ AI explanations enabled (Gemini). Your message is analysed locally first, then explained.'
+        : 'Running in offline heuristic mode. Add an GEMINI_API_KEY to enable AI-written explanations.';
   } catch {
     /* ignore */
   }
@@ -121,7 +121,7 @@ function renderResult(data) {
   els.verdictLabel.style.color = color;
   els.summary.textContent = data.summary;
   els.explanation.textContent = data.explanation;
-  els.sourceTag.textContent = data.explanationSource === 'llm' ? `AI · ${data.model || 'Claude'}` : 'Heuristic';
+  els.sourceTag.textContent = data.explanationSource === 'llm' ? `AI · ${data.model || 'Gemini'}` : 'Heuristic';
 
   renderSignals(data.signals);
   renderUrls(data.urls);

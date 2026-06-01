@@ -1,7 +1,7 @@
 {
   "name": "ai-phishing-detector",
   "version": "1.0.0",
-  "description": "AI-powered phishing & scam-message detector. Paste an email, SMS, or chat message and get a risk verdict, the red flags that triggered it, and a plain-English explanation of why — and how to stay safe.",
+  "description": "AI-powered phishing & scam-message detector. Paste an email, SMS, or chat message and get a risk verdict, the red flags that triggered it, and a plain-English explanation of why - and how to stay safe.",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "cybersecurity",
     "ai",
     "llm",
-    "claude",
+    "gemini",
     "security",
     "anti-phishing",
     "email-security"
@@ -23,7 +23,7 @@
   "author": "ramsai676",
   "license": "MIT",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
+    "@google/genai": "^2.7.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.2"
   },
