@@ -1,8 +1,8 @@
-# 🛡️ PhishGuardAI — AI Phishing & Scam Detector
+# 🛡️ PhishGuardAI - AI Phishing & Scam Detector
 
-> Paste any suspicious **email, SMS, or chat message** and instantly get a **risk score**, the **red flags** that triggered it, and a **plain-English explanation** of *why* it's dangerous — and how to stay safe.
+> Paste any suspicious **email, SMS, or chat message** and instantly get a **risk score**, the **red flags** that triggered it, and a **plain-English explanation** of *why* it's dangerous - and how to stay safe.
 
-A defensive cybersecurity tool that combines a transparent, OWASP-aware **heuristic detection engine** with an **LLM (Claude)** that explains findings to non-technical users. Built to help everyday people — and small businesses — spot phishing before they click.
+A defensive cybersecurity tool that combines a transparent, OWASP-aware **heuristic detection engine** with an **LLM (Claude)** that explains findings to non-technical users. Built to help everyday people - and small businesses - spot phishing before they click.
 
 ![status](https://img.shields.io/badge/status-production--ready-2ecc71)
 ![node](https://img.shields.io/badge/node-%3E%3D18-5b8cff)
@@ -14,9 +14,9 @@ A defensive cybersecurity tool that combines a transparent, OWASP-aware **heuris
 
 Anyone can build an AI chat app. Far fewer build at the **AI + security** intersection. PhishGuardAI is:
 
-- **Genuinely useful & defensive** — it helps users *protect* themselves, never attacks anyone.
-- **Explainable** — it doesn't just say "scam," it shows the exact phrases, links, and tactics that fired, each mapped to *why* scammers use them.
-- **Robust** — the detection engine runs **fully offline**. The AI only *enriches* the explanation, so the product is never broken by a missing API key, rate limit, or network blip.
+- **Genuinely useful & defensive** - it helps users *protect* themselves, never attacks anyone.
+- **Explainable** - it doesn't just say "scam," it shows the exact phrases, links, and tactics that fired, each mapped to *why* scammers use them.
+- **Robust** - the detection engine runs **fully offline**. The AI only *enriches* the explanation, so the product is never broken by a missing API key, rate limit, or network blip.
 
 ---
 
@@ -24,7 +24,7 @@ Anyone can build an AI chat app. Far fewer build at the **AI + security** inters
 
 | Paste a message | Get an explained verdict |
 | --- | --- |
-| `URGENT: Your PayPal account is suspended. Verify within 24h at http://paypa1-secure.verify.xyz` | 🛑 **Dangerous — 92/100** · manufactured urgency · credential request · look-alike domain |
+| `URGENT: Your PayPal account is suspended. Verify within 24h at http://paypa1-secure.verify.xyz` | 🛑 **Dangerous - 92/100** · manufactured urgency · credential request · look-alike domain |
 
 ### Screenshots
 
@@ -86,7 +86,7 @@ npm start
 # → open http://localhost:3000
 ```
 
-No API key? It still works — you'll get the full risk analysis with deterministic explanations.
+No API key? It still works - you'll get the full risk analysis with deterministic explanations.
 
 ### Run the tests
 
@@ -107,19 +107,19 @@ npm test
 // response
 {
   "score": 92,
-  "verdict": { "level": "dangerous", "label": "Dangerous — Very Likely a Scam", "emoji": "🛑" },
+  "verdict": { "level": "dangerous", "label": "Dangerous - Very Likely a Scam", "emoji": "🛑" },
   "signals": [
     {
       "id": "suspicious_url",
       "label": "Suspicious or deceptive link",
       "severity": "high",
       "strength": 0.95,
-      "evidence": "paypa1-secure.xyz — domain \"paypa1\" is a near-identical look-alike of \"paypal\"",
+      "evidence": "paypa1-secure.xyz - domain \"paypa1\" is a near-identical look-alike of \"paypal\"",
       "explanation": "Always hover a link and read the real domain before clicking."
     }
   ],
   "urls": ["http://paypa1-secure.xyz"],
-  "summary": "Dangerous — Very Likely a Scam. Detected 3 risk signals...",
+  "summary": "Dangerous - Very Likely a Scam. Detected 3 risk signals...",
   "explanation": "This message is almost certainly a scam...",
   "explanationSource": "llm",
   "model": "claude-haiku-4-5-20251001"
@@ -135,7 +135,7 @@ Returns `{ "status": "ok", "llm": "enabled" | "fallback" }`.
 
 - **Backend:** Node.js + Express (ES modules)
 - **AI:** Anthropic Claude via `@anthropic-ai/sdk` (optional, with graceful fallback)
-- **Frontend:** vanilla HTML/CSS/JS — zero build step, animated risk gauge
+- **Frontend:** vanilla HTML/CSS/JS - zero build step, animated risk gauge
 - **Tests:** Node's built-in `node:test`
 
 ---
@@ -155,7 +155,7 @@ Works on any Node host. The included `GET /api/health` endpoint suits platform h
 
 PhishGuardAI is **strictly defensive and educational**. It analyses messages a user *already received* to help them stay safe. It does **not** generate phishing content, attack any system, or evade detection. Heuristics are transparent and inspectable in [`src/analyzer.js`](src/analyzer.js).
 
-It is a **decision aid, not a guarantee** — always verify with the supposed sender through an official, trusted channel.
+It is a **decision aid, not a guarantee** - always verify with the supposed sender through an official, trusted channel.
 
 ---
 
@@ -175,4 +175,4 @@ ai-phishing-detector/
 
 ## 📜 License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
