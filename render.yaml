@@ -1,0 +1,15 @@
+# One-click deploy to Render (https://render.com) — free tier.
+# In Render: New + → Blueprint → connect this repo. Render reads this file.
+services:
+  - type: web
+    name: ai-phishing-detector
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      # Optional — the app works without it (heuristic mode). Add your key in
+      # the Render dashboard to enable AI explanations. Left un-synced for safety.
+      - key: ANTHROPIC_API_KEY
+        sync: false
