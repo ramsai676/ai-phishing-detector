@@ -20,7 +20,7 @@
     "anti-phishing",
     "email-security"
   ],
-  "author": "",
+  "author": "ramsai676",
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
