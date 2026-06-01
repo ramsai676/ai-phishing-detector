@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Phishing &amp; Scam Detector</title>
+  <meta name="description" content="Paste any suspicious email, SMS, or message and get an instant AI-powered risk verdict with the red flags explained in plain English." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">🛡️</span>
+      <span class="brand-name">PhishGuard<span class="brand-ai">AI</span></span>
+    </div>
+    <a class="gh-link" href="https://github.com" target="_blank" rel="noopener">View on GitHub →</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Is this message a scam?</h1>
+      <p class="subtitle">
+        Paste a suspicious <strong>email, SMS, or chat message</strong>. PhishGuardAI scores the risk,
+        highlights every red flag, and explains <em>why</em> — in plain English.
+      </p>
+    </section>
+
+    <section class="panel input-panel">
+      <label for="message" class="field-label">Message to analyse</label>
+      <textarea
+        id="message"
+        placeholder="e.g. URGENT: Your account has been suspended. Verify your identity within 24 hours at http://paypa1-secure.login.xyz or your account will be permanently closed."
+        rows="9"
+        spellcheck="false"></textarea>
+
+      <div class="actions">
+        <button id="analyze-btn" class="btn-primary">
+          <span class="btn-label">Analyse message</span>
+          <span class="spinner" hidden></span>
+        </button>
+        <button id="sample-btn" class="btn-ghost" type="button">Try a sample</button>
+        <button id="clear-btn" class="btn-ghost" type="button">Clear</button>
+      </div>
+      <p class="hint" id="mode-hint"></p>
+    </section>
+
+    <section class="panel result-panel" id="result" hidden>
+      <div class="gauge-row">
+        <div class="gauge" id="gauge">
+          <svg viewBox="0 0 120 120" class="gauge-svg">
+            <circle class="gauge-track" cx="60" cy="60" r="52" />
+            <circle class="gauge-fill" id="gauge-fill" cx="60" cy="60" r="52" />
+          </svg>
+          <div class="gauge-center">
+            <span class="gauge-score" id="score">0</span>
+            <span class="gauge-max">/ 100</span>
+          </div>
+        </div>
+        <div class="verdict-block">
+          <div class="verdict-badge" id="verdict-badge">
+            <span class="verdict-emoji" id="verdict-emoji">✅</span>
+            <span class="verdict-label" id="verdict-label">—</span>
+          </div>
+          <p class="summary" id="summary"></p>
+        </div>
+      </div>
+
+      <div class="explanation-card" id="explanation-card">
+        <div class="explanation-head">
+          <h3>What this means</h3>
+          <span class="source-tag" id="source-tag"></span>
+        </div>
+        <p id="explanation"></p>
+      </div>
+
+      <div class="signals-block" id="signals-block">
+        <h3>Red flags detected <span class="count" id="signal-count"></span></h3>
+        <ul class="signals" id="signals"></ul>
+      </div>
+
+      <div class="urls-block" id="urls-block" hidden>
+        <h3>Links found</h3>
+        <ul class="urls" id="urls"></ul>
+        <p class="url-warning">⚠️ Links are shown for inspection only — do not click any you don't recognise.</p>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <p>
+        <strong>Educational / defensive tool.</strong> PhishGuardAI helps you spot common phishing and
+        social-engineering tells. It is a decision aid, not a guarantee — always verify with the
+        supposed sender through an official, trusted channel.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with Node, Express &amp; Claude · OWASP-aware phishing heuristics · Defensive security project</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

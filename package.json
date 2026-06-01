@@ -1,0 +1,33 @@
+{
+  "name": "ai-phishing-detector",
+  "version": "1.0.0",
+  "description": "AI-powered phishing & scam-message detector. Paste an email, SMS, or chat message and get a risk verdict, the red flags that triggered it, and a plain-English explanation of why — and how to stay safe.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "phishing",
+    "scam-detection",
+    "cybersecurity",
+    "ai",
+    "llm",
+    "claude",
+    "security",
+    "anti-phishing",
+    "email-security"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
