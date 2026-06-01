@@ -26,7 +26,11 @@ Anyone can build an AI chat app. Far fewer build at the **AI + security** inters
 | --- | --- |
 | `URGENT: Your PayPal account is suspended. Verify within 24h at http://paypa1-secure.verify.xyz` | 🛑 **Dangerous — 92/100** · manufactured urgency · credential request · look-alike domain |
 
-> _Add your screenshots/GIF here after deploying (e.g. `docs/demo.gif`)._
+### Screenshots
+
+| Paste a message | Catching a phishing attempt |
+| :---: | :---: |
+| ![Home screen](docs/01-home.png) | ![Phishing verdict with red flags](docs/02-result.png) |
 
 **Live demo:** _add your deployed URL here_
 
